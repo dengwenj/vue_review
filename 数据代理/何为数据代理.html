@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 数据代理：通过一个对象代理对另一个对象中属性的操作（读、写）
+      // 就是说一个对象可以操作另一个对象中的属性，这个对象也有那个属性，另一个对象中的属性也要改变
+      // obj1 可以修改操作这个对象，obj2 也可以操作这个对象
+      let obj1 = { name: 'xz', age: 18 }
+      let obj2 = { name: 'xd' }
+
+      Object.defineProperty(obj2, 'age', {
+        get() {
+          return obj1.age
+        },
+
+        set(value) {
+          obj1.age = value
+        },
+      })
+    </script>
+  </body>
+</html>
