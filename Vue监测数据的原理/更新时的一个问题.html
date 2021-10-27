@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <button @click="updateDeng">把xd改成小邓</button>
+      <ul>
+        <li v-for="item in person" :key="item.id">
+          {{item.name}}--{{item.age}}
+        </li>
+      </ul>
+    </div>
+    <script>
+      const vm = new Vue({
+        el: '#root',
+        data: {
+          person: [
+            { id: '001', name: 'xd', age: 18 },
+            { id: '002', name: '张三', age: 8 },
+            { id: '003', name: '李四', age: 20 },
+          ],
+        },
+        methods: {
+          updateDeng() {
+            // 不可以
+            this.person[0] = { id: '001', name: '小邓', age: 21 }
+
+            // 可以
+            // this.person[0].name = '小邓'
+            // this.person[0].age = 21
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
