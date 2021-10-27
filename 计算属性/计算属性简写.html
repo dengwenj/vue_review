@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <input type="text" v-model="one" />
+      <input type="text" v-model="two" />
+      <div>姓名：{{ fullName }}</div>
+      <div>姓名：{{ fullName }}</div>
+      <div>姓名：{{ fullName }}</div>
+      <div>姓名：{{ fullName }}</div>
+    </div>
+    <script>
+      const vm = new Vue({
+        el: '#root',
+        data: {
+          one: '张',
+          two: '三',
+        },
+        computed: {
+          // 简写的话就是一个函数，这个函数当 get 使用，一般计算属性不修改，依赖项发生变化才会重新调用这个函数
+          fullName() {
+            console.log('依赖项发生变化才会重新调用这个函数')
+            return this.one + '-' + this.two
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
