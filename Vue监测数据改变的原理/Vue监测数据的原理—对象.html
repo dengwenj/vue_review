@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let data = {
+        name: 'xiaodeng',
+        age: 18,
+      }
+
+      function Observer(obj) {
+        // 汇总对象中所有的属性形成一个数组
+        const keys = Object.keys(obj)
+        // 遍历
+        keys.forEach((item) => {
+          Object.defineProperty(this, item, {
+            get() {
+              console.log('我读取了')
+              return obj[item]
+            },
+            set(value) {
+              console.log(
+                '当有人修改了属性就会触发这函数，解析模板了，生成虚拟dom...'
+              )
+              obj[item] = value
+            },
+          })
+        })
+      }
+      const obs = new Observer(data)
+
+      // 数据代理：一个对象代理另一个对象中属性的操作
+      let vm = {}
+      const arr = Object.keys(data)
+      arr.forEach((item) => {
+        Object.defineProperty(vm, item, {
+          get() {
+            return data[item]
+          },
+          set(value) {
+            data[item] = value
+          },
+        })
+      })
+
+      vm._data = data = obs
+    </script>
+  </body>
+</html>
