@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+    Vue 监视数据的原理：
+      1 vue 会监视 data 中所有层次的数据
+      
+      2 如何监测对象的数据？
+          通过setter实现监测，且要在 new Vue 时就传入要监测的数据
+           1 对象中后追加的属性，Vue默认不做响应式处理
+           2 如需给后添加的属性做响应式，
+              要用：Vue.set(target,propertyName/index,value)
+              或 this.$set(target,propertyName/index,value)
+      
+     3 如何监测数组中的数据？
+         通过包裹数组更新元素的方法实现，本质就是做了两件事：
+           1 调用原生对应的方法对数组进行更新
+           2 重新解析模板，进而更新页面
+
+     4 在Vue修改数组中的某个元素一定要用
+        1 push,pop,unshift,shift,sort,splice,resverse
+        2 Vue.set(),this.$set()
+
+     Vue.set() 和 this.$set()不能给 vm 或 vm 的根数据对象添加属性(data)
+   -->
+  </body>
+</html>
