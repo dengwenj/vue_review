@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+  </head>
+  <div id="root">
+    <h2>姓名：{{person.name}}</h2>
+    <h2>年龄：{{person.age}}</h2>
+    <h2 v-if="person.sex">性别：{{person.sex}}</h2>
+    <button @click="addSex">添加性别</button>
+  </div>
+  <body>
+    <script>
+      const vm = new Vue({
+        el: '#root',
+        data: {
+          person: {
+            name: '小邓',
+            age: 18,
+          },
+        },
+        methods: {
+          addSex() {
+            // Vue.set(this.person, 'sex', '男')
+            this.$set(this.person, 'sex', '男') // 后添加的属性也能有响应式的功能。不能直接值data添加，或者实例上，必须要是一个响应式的
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
