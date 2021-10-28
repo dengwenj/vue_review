@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <h2>{{n}}</h2>
+      <button @click="n++">点我+1</button>
+      <button @click="stop">销毁</button>
+    </div>
+    <script>
+      new Vue({
+        el: '#root',
+        data: {
+          n: 1,
+        },
+        beforeCreate() {
+          console.log(
+            'beforeCreate 在数据监测，数据代理创建之前，还没有 data 中的数据，methods中的方法'
+          )
+        },
+        created() {
+          console.log(
+            'created 里面数据代理，数据监测都有了，data中的数据，methods中的方法也有了'
+          )
+        },
+        // Vue 解析模板，生成虚拟dom存在内存中
+        beforeMount() {
+          console.log(
+            'beforeMount 这里面还是未经 Vue 编译的dom，页面上呈现的还是原始的dom，所有对dom的操作最终都不奏效'
+          )
+        },
+        // 把虚拟 dom 转换成真实 dom 呈现在页面上
+        mounted() {
+          console.log(
+            'mounted 挂载完毕了，是 Vue 编译的dom，对dom操作有效，这里面一般做网络请求，开启定时器，绑定自定义事件，消息订阅等等'
+          )
+        },
+        beforeUpdate() {
+          console.log(
+            'beforeUpdate 数据是新的但是页面上的数据还是旧的，页面和数据不同步'
+          )
+        },
+        // 生成新的虚拟dom，与原来的虚拟dom进行比较，model->view ，data中的数据到视图上
+        updated() {
+          console.log('updated 数据是新的页面也是新的更新完了')
+        },
+        beforeDestroy() {
+          console.log(
+            'beforeDestroy 即将被销毁的钩子，在这个钩子里面做一些收尾的工作，不如关闭定时器，解绑自定义事件，取消订阅等等'
+          )
+        },
+        destroyed() {
+          console.log('destroyed 已经销毁完毕了')
+        },
+        methods: {
+          stop() {
+            this.$destroy()
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
