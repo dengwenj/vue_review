@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <ul>
+        <li v-for="item in hobby" :key="item">{{ item }}</li>
+        <button @click="updateClick">点击修改</button>
+      </ul>
+    </div>
+    <script>
+      // 直接操作数组的索引值，用赋值的方式去改不行的，不是响应式的
+      const vm = new Vue({
+        el: '#root',
+        data: {
+          hobby: ['学习', '睡觉', '打游戏'],
+        },
+        methods: {
+          updateClick() {
+            // this.hobby[0] = '吃饭' 这样直接修改索引的话不行
+            this.hobby.splice(0, 1, '吃饭')
+            this.hobby.push(
+              'Vue监测数组的改变是把改变数组的方法进行了包装，push，pop，unshift，shift，splice，sort，reverse'
+            )
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

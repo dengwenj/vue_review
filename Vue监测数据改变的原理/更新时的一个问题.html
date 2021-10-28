@@ -29,7 +29,8 @@
         methods: {
           updateDeng() {
             // 不可以
-            this.person[0] = { id: '001', name: '小邓', age: 21 }
+            // this.person[0] = { id: '001', name: '小邓', age: 21 }
+            this.person.splice(0, 1, { id: '001', name: '小邓', age: 21 })
 
             // 可以
             // this.person[0].name = '小邓'
