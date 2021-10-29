@@ -66,3 +66,22 @@ mounted(){this.$refs.demo.$on('dwj',(数据)=>{})} （父组件里面）
 4 触发自定义事件：this.$emit('dwj',数据)（在子组件里面）
 5 解绑自定义事件：this.$off('dwj')
 6 组件上也可以绑定原生 DOM 事件，需要使用 native 修饰符
+
+## 全局事件总线
+
+1 一种组件间通信的方式，适用于任意组件间通信
+2 安装全局事件总线：
+new Vue({
+...
+beforeCreate(){
+Vue.prototype.$bus = this // 安装全局事件总线，$bus 就是当前应用的 vm
+}
+})
+3 使用事件总线：
+(1)接收数据：A 组件想接收数据，则在 A 组件中给 $bus 绑定自定义事件，事件的回调留在 A 组件自身
+mounted(){
+  this.$bus.$on('xxx',()=>{})
+}
+(2)提供数据：this.$bus.$emit('xxx',数据)
+
+4 最好在 beforeDestroy 钩子中，用 $off 去解绑当前组件所用到的事件
