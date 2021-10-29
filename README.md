@@ -85,3 +85,9 @@ mounted(){
 (2)提供数据：this.$bus.$emit('xxx',数据)
 
 4 最好在 beforeDestroy 钩子中，用 $off 去解绑当前组件所用到的事件
+
+## $nextTick
+
+1 语法：this.$nextTick(回调函数)
+2 作用：在下一次 DOM 更新结束后执行其指定的回调
+3 什么时候用：当改变数据后，要基于更新后的新 DOM 进行某些操作时，要在 nextTick 所指定的回调函数中执行
