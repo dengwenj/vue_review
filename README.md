@@ -43,3 +43,8 @@ methods:{...}
 第二步使用混入，
 （1）全局混入：Vue.mixin(xxx)
 (2)局部混入:mixins:[xxx] (配置项)
+
+## 浏览器本地存储
+
+1 SessionStorage 存储的内容会随着浏览器窗口关闭而消失
+2 LocalStorage 存储的内容，需要手动清除才会消失
