@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+  </head>
+  <body>
+    <!-- 
+      1 一个重要的内置关系：VueComponent.prototype.__proto__ === Vue.prototype
+      2 为什么要有这个关系：让组件实例对象（vc）可以访问到 Vue 原型上的属性、方法
+
+      Person 组件本质是一个名为 VueComponent 的构造函数，是 Vue.extend 生成的
+      我们只需要写 <Person/>，Vue 解析时会帮我们创建 Person 组件的实例对象。即：Vue 帮我们执行的：new VueComponent(options)
+     -->
+    <div id="root">
+      <Person></Person>
+    </div>
+    <script>
+      const Person = Vue.extend({
+        template: `
+          <div>
+            <h2>{{ msg }}</h2>
+            <button @click="showX(1)">点击</button>
+          </div>
+        `,
+        data() {
+          return {
+            msg: '我是组件',
+          }
+        },
+        mounted() {
+          console.log(this)
+        },
+        methods: {
+          showX(num) {
+            console.log(this.x)
+            console.log(num)
+          },
+        },
+      })
+
+      new Vue({
+        el: '#root',
+        components: { Person },
+      })
+      Vue.prototype.x = 100
+    </script>
+  </body>
+</html>
